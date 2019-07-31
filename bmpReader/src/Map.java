@@ -84,44 +84,50 @@ public void textDisplay() {
 
 
 public byte[] cropTri(int x1,int y1,int x2,int y2,int x3,int y3){
-	byte[][] visMap = new byte[width][height];
-	
+	Boolean[][] visMap = new Boolean[width][height];
+	Boolean[][] pointer = new Boolean[width][height];
+
 	for (int i = 0; i < width;i++) {
 		for (int j = 0; j < height; j++) {
-			visMap[i][j]=(byte) 255;
+			visMap[i][j]=false;
 			System.out.print(i+"/"+j+" ");
 		}
 		System.out.println();
 	}
-	visMap[x1][y1]=111;
-	visMap[x2][y2]=111;
-	visMap[x3][y3]=111;
+	visMap[x1][y1]=true;
+	visMap[x2][y2]=true;
+	visMap[x3][y3]=true;
 	
+//
+	double slope12=((double)y2-y1)/((double)x2-x1);
+	double slope23=((double)y2-y3)/((double)x2-x3);
+	double slope13=((double)y1-y3)/((double)x1-x3);
 
-	double slope12=(y1-y2)/(x1-x2);
-	
-	
-	double slope23=(y2-y3)/(x2-x3);
-	double slope13=(y3-y1)/(x3-x1);
-	System.out.println(slope13);
-	for (int i = 0; i < width; i++) {
-		if((int) (i+slope13*i)>0&&(int) (i+slope13*i)<width) {
-		visMap[i][(int) (i+slope13*i)]=111;
-		}
+	System.out.println("slope from point 1 to point 2 is: "+slope12+"\nslope from point 2 to point 3 is: "+slope23+"\nslope from point 1 to point 3 is: "+slope13);
+for (int i = 0; i < width; i++) {
+if(y1+(slope13*i)>height) {
+		
+	}else
+	visMap[x1+i][(int) (y1+slope12)]=true;
+}
+for (int i = 0; i < width; i++) {
+if(y1+(slope13*i)>height) {
+		
+	}else
+	visMap[x2+i][(int) (y2+slope23)]=true;
+}
+for (int i = 0; i < width; i++) {
+	if(y1+(slope13*i)>height) {
+		
+	}else {
+	visMap[x1+i][(int) (y1+(slope13*i))]=true;
 	}
-	for (int i = 0; i < height; i++) {
-		if((int) (i+slope13*i)>0&&(int) (i+slope13*i)<width) {
-		visMap[(int) (i+slope13*i)][i]=111;
-		}
-	}
-//	for (int i = 0; i < width; i++) {
-//		if((int) (i+slope12*i)>0&&(int) (i+slope12*i)<width)
-//		visMap[i][(int) (i+slope12*i)]=111;
-//	}
+}
+	
 	//visual
 		for (int i = 0; i < visMap.length; i++) {
 			for (int j = 0; j < visMap.length; j++) {	
-				if(Byte.toUnsignedInt(visMap[i][j])==255) {
+				if(!visMap[i][j]) {
 					System.out.print("--- ");
 				}else {
 					System.out.print("### ");

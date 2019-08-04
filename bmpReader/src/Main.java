@@ -5,9 +5,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Main {
 public static void main(String[] args) throws IOException {
-Map map = new Map("10x10.bmp");
-//map.textDisplay();
-map.cropTri(0, 0, 9, 0, 5, 9);
+Map map = new Map("yee.bmp");
+map.textDisplay();
+//map.cropTri(0, 0, 9, 0, 5, 9);
 //for (int i = 0; i < map.turn.length; i++) {
 //	System.out.print(Byte.toUnsignedInt(map.turn[i]));
 //}

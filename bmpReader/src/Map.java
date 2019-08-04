@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
  String file;
  boolean Alpha;
  byte turn[];
+ byte pic[][][];
  int height;
  int width;
 Map(String path) throws IOException{
@@ -20,7 +21,7 @@ Map(String path) throws IOException{
 	width=w;
 	height=h;
 	System.out.println(path+" has been loaded with a size of "+w+"/"+h);
-	byte[][][] pic = new byte[w][h][4];
+	 pic = new byte[w][h][4];
 	 turn = new byte[w*h*4];
 	//creates layers separately
 	byte[][] red = new byte[w][h];
@@ -80,6 +81,13 @@ public void textDisplay() {
 		}
 		System.out.print(Byte.toUnsignedInt(turn[i])+",");
 	}
+}
+public float[] getPixAt(float x, float y) {
+	float converX
+	float converY
+
+	return null;
+
 }
 
 

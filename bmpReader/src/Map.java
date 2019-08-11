@@ -70,6 +70,7 @@ Map(String path) throws IOException{
 	System.out.println("4");
 
 }
+//just for debug
 public void textDisplay() {
 	for (int i = 0; i < turn.length; i++) {
 		if(i%4==0) {
@@ -83,69 +84,74 @@ public void textDisplay() {
 	}
 }
 public float[] getPixAt(float x, float y) {
-	float converX
-	float converY
-
-	return null;
+	
+	float[] pixData = new float[4];
+	float converX =x*width;
+	float converY =y*height;
+	pixData[0]=Byte.toUnsignedInt(pic[(int) converX][(int) converY][0]);
+	pixData[1]=Byte.toUnsignedInt(pic[(int) converX][(int) converY][1]);
+	pixData[2]=Byte.toUnsignedInt(pic[(int) converX][(int) converY][2]);
+	pixData[3]=Byte.toUnsignedInt(pic[(int) converX][(int) converY][3]);
+	return pixData;
 
 }
 
 
-public byte[] cropTri(int x1,int y1,int x2,int y2,int x3,int y3){
-	Boolean[][] visMap = new Boolean[width][height];
-	Boolean[][] pointer = new Boolean[width][height];
-
-	for (int i = 0; i < width;i++) {
-		for (int j = 0; j < height; j++) {
-			visMap[i][j]=false;
-			System.out.print(i+"/"+j+" ");
-		}
-		System.out.println();
-	}
-	visMap[x1][y1]=true;
-	visMap[x2][y2]=true;
-	visMap[x3][y3]=true;
-	
+//public byte[] cropTri(int x1,int y1,int x2,int y2,int x3,int y3){
+//	Boolean[][] visMap = new Boolean[width][height];
+//	Boolean[][] pointer = new Boolean[width][height];
 //
-	double slope12=((double)y2-y1)/((double)x2-x1);
-	double slope23=((double)y2-y3)/((double)x2-x3);
-	double slope13=((double)y1-y3)/((double)x1-x3);
-
-	System.out.println("slope from point 1 to point 2 is: "+slope12+"\nslope from point 2 to point 3 is: "+slope23+"\nslope from point 1 to point 3 is: "+slope13);
-for (int i = 0; i < width; i++) {
-if(y1+(slope13*i)>height) {
-		
-	}else
-	visMap[x1+i][(int) (y1+slope12)]=true;
-}
-for (int i = 0; i < width; i++) {
-if(y1+(slope13*i)>height) {
-		
-	}else
-	visMap[x2+i][(int) (y2+slope23)]=true;
-}
-for (int i = 0; i < width; i++) {
-	if(y1+(slope13*i)>height) {
-		
-	}else {
-	visMap[x1+i][(int) (y1+(slope13*i))]=true;
-	}
-}
-	
-	//visual
-		for (int i = 0; i < visMap.length; i++) {
-			for (int j = 0; j < visMap.length; j++) {	
-				if(!visMap[i][j]) {
-					System.out.print("--- ");
-				}else {
-					System.out.print("### ");
-				}
-				//System.out.print(Byte.toUnsignedInt(visMap[i][j])+" ");
-			}
-			System.out.println("\n");
-		}
-		//vis
-	return turn;
-}
+//	for (int i = 0; i < width;i++) {
+//		for (int j = 0; j < height; j++) {
+//			visMap[i][j]=false;
+//			System.out.print(i+"/"+j+" ");
+//		}
+//		System.out.println();
+//	}
+//	visMap[x1][y1]=true;
+//	visMap[x2][y2]=true;
+//	visMap[x3][y3]=true;
+//	
+////
+//	double slope12=((double)y2-y1)/((double)x2-x1);
+//	double slope23=((double)y2-y3)/((double)x2-x3);
+//	double slope13=((double)y1-y3)/((double)x1-x3);
+//
+//	System.out.println("slope from point 1 to point 2 is: "+slope12+"\nslope from point 2 to point 3 is: "+slope23+"\nslope from point 1 to point 3 is: "+slope13);
+//for (int i = 0; i < width; i++) {
+//if(y1+(slope13*i)>height) {
+//		
+//	}else
+//	visMap[x1+i][(int) (y1+slope12)]=true;
+//}
+//for (int i = 0; i < width; i++) {
+//if(y1+(slope13*i)>height) {
+//		
+//	}else
+//	visMap[x2+i][(int) (y2+slope23)]=true;
+//}
+//for (int i = 0; i < width; i++) {
+//	if(y1+(slope13*i)>height) {
+//		
+//	}else {
+//	visMap[x1+i][(int) (y1+(slope13*i))]=true;
+//	}
+//}
+//	
+//	//visual
+//		for (int i = 0; i < visMap.length; i++) {
+//			for (int j = 0; j < visMap.length; j++) {	
+//				if(!visMap[i][j]) {
+//					System.out.print("--- ");
+//				}else {
+//					System.out.print("### ");
+//				}
+//				//System.out.print(Byte.toUnsignedInt(visMap[i][j])+" ");
+//			}
+//			System.out.println("\n");
+//		}
+//		//vis
+//	return turn;
+//}
 
  }

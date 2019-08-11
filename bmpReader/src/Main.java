@@ -5,13 +5,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Main {
 public static void main(String[] args) throws IOException {
-Map map = new Map("yee.bmp");
+Map map = new Map("test.bmp");
 map.textDisplay();
+System.err.println(map.getPixAt(0.5f,0.5f)[0]+","+map.getPixAt(0.5f,0.5f)[1]+","+map.getPixAt(0.5f,0.5f)[2]+","+map.getPixAt(0.5f,0.5f)[3]);
 //map.cropTri(0, 0, 9, 0, 5, 9);
 //for (int i = 0; i < map.turn.length; i++) {
 //	System.out.print(Byte.toUnsignedInt(map.turn[i]));
 //}
 }
+
+
 }
 //public byte[] getByte(String bmpLoc) throws IOException {
 //	ArrayList<Byte> ListData= new ArrayList<Byte>();

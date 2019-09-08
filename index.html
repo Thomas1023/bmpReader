@@ -1,0 +1,70 @@
+<html>
+    <meta charset = 'utf.8' />
+    <canvas id="can"></canvas>
+    <script type ='text/javascript'>
+        var can;
+        var gl;
+        window.onload = function(){
+            alert("hi");
+            canvas = document.getElementById("can");
+            gl = canvas.getContext("webgl2");
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            gl.clearColor(0,1,0,1);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            var verts =[
+            -0.5,-0.5,0.0,
+            0.0,0.5,0.0,
+            0.5,-0.5,0.0
+            ]
+            var vao= gl.createVertexArray();
+            gl.bindVertexArray(vao);
+            var vbo = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER,vbo);
+
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts),gl.STATIC_DRAW);
+
+            var vertShader= "#version 300 es\n\
+            in vec3 position;\n\
+            void main(){\
+                gl_Position = vec$(position,1.0);\
+            }\
+            ";
+            var fragShader="#version 300 es\n\
+            precision mediump float;\
+            out vec4 pixelcolor;\n\
+            void main(){\
+                pixelcolor = vec4 =vec4(0,0,0,1);\
+            }"
+
+            var vertShad=gl.createShader(gl.VERTEX_SHADER);
+            gl.shaderSource(vertShad,vertShader);
+            gl.compileShader(vertShad);
+            var compiled = gl.getShaderParameter(vertShad,gl.COMPILE_STATUS);
+            if(!compiled){
+                console.log(gl.getShaderInfoLog(vertShad));
+            }
+            var fragShad=gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(fragShad,fragShader);
+            gl.compileShader(fragShad);
+
+            var compiled = gl.getShaderParameter(fragShad,gl.COMPILE_STATUS);
+            if(!compiled){
+                console.log(gl.getShaderInfoLog(fragShad));
+            }
+            var shaderProgram=gl.createProgram();
+            gl.attachShader(shaderProgram,vertShad);
+            gl.attachShader(shaderProgram,fragShad);
+            gl.linkProgram(shaderProgram);
+            gl.useProgram(shaderProgram);
+            
+            var positionID=gl.getAttribLocation(shaderProgram,"position");
+            gl.enableVertexAttribArray(positionID);
+            gl.vertexAttribPointer(positionID,3,gl.FLOAT,gl.FALSE,0,0);
+            gl.drawArrays(gl.TRIANGLES,0,3)
+        }
+    </script>
+    
+    <h1>2</h1>
+
+</html>
